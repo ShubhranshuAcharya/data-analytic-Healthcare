@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MedCare Analytics - Advanced Healthcare Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <i class="fas fa-heartbeat loading-icon"></i>
+            <h2>MedCare Analytics</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Loading healthcare platform...</p>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <div class="logo-text">
+                    <span class="logo-title">MedCare Analytics</span>
+                    <div class="logo-subtitle">Advanced Healthcare AI</div>
+                </div>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-btn active" data-section="dashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-btn" data-section="patient-registration">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register Patient</span>
+                </button>
+                <button class="nav-btn" data-section="prediction">
+                    <i class="fas fa-microscope"></i>
+                    <span>Analysis</span>
+                </button>
+                <button class="nav-btn" data-section="reports">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Reports</span>
+                </button>
+                <button class="nav-btn" data-section="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education</span>
+                </button>
+                <button class="nav-btn" data-section="population">
+                    <i class="fas fa-users"></i>
+                    <span>Population</span>
+                </button>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." id="globalSearch">
+                </div>
+                <button class="btn btn--sm btn--outline theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">DS</div>
+                    <div class="user-info">
+                        <span class="user-name">Dr. Smith</span>
+                        <span class="user-role">Endocrinologist</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Healthcare Analytics Dashboard</h1>
+                    <p class="section-subtitle">Real-time insights and predictive analytics for diabetes care</p>
+                    <div class="quick-actions">
+                        <button class="btn btn--primary" onclick="showSection('patient-registration')">
+                            <i class="fas fa-user-plus"></i> New Patient
+                        </button>
+                        <button class="btn btn--outline" onclick="showSection('prediction')">
+                            <i class="fas fa-chart-line"></i> Quick Analysis
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card metric-card--primary">
+                        <div class="metric-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value">15,847</h3>
+                            <p class="metric-label">Total Patients</p>
+                            <div class="metric-trend">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12% this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card metric-card--warning">
+                        <div class="metric-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value">2,108</h3>
+                            <p class="metric-label">High Risk Patients</p>
+                            <div class="metric-trend">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-3% this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card metric-card--success">
+                        <div class="metric-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value">86%</h3>
+                            <p class="metric-label">Prediction Accuracy</p>
+                            <div class="metric-trend">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+2% this quarter</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card metric-card--info">
+                        <div class="metric-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 class="metric-value">342</h3>
+                            <p class="metric-label">Screenings Today</p>
+                            <div class="metric-trend">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8% from yesterday</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Charts -->
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Risk Distribution</h3>
+                            <select class="chart-filter">
+                                <option>Last 30 days</option>
+                                <option>Last 90 days</option>
+                                <option>Last year</option>
+                            </select>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="riskDistributionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Age Demographics</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item">
+                                    <span class="legend-color legend-color--male"></span> Male
+                                </span>
+                                <span class="legend-item">
+                                    <span class="legend-color legend-color--female"></span> Female
+                                </span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Predictions</h3>
+                            <a href="#" class="view-all-link">View All</a>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <span>MJ</span>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Maria Johnson <span class="patient-id">MRN-2024-002341</span></h4>
+                                    <p>High risk prediction • Glucose: 185 mg/dL • BMI: 34.2</p>
+                                    <span class="activity-time">2 minutes ago</span>
+                                </div>
+                                <div class="activity-status status--high">High Risk</div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <span>RD</span>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Robert Davis <span class="patient-id">MRN-2024-002340</span></h4>
+                                    <p>Low risk prediction • Glucose: 95 mg/dL • BMI: 22.8</p>
+                                    <span class="activity-time">15 minutes ago</span>
+                                </div>
+                                <div class="activity-status status--low">Low Risk</div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-avatar">
+                                    <span>LW</span>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Lisa Wilson <span class="patient-id">MRN-2024-002339</span></h4>
+                                    <p>Moderate risk prediction • Glucose: 145 mg/dL • BMI: 28.5</p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                                <div class="activity-status status--medium">Moderate Risk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patient Registration Section -->
+        <section id="patient-registration" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Patient Registration</h1>
+                    <p class="section-subtitle">Comprehensive patient intake and medical history collection</p>
+                </div>
+
+                <div class="registration-container">
+                    <div class="registration-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="progress-circle">1</div>
+                            <span>Demographics</span>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="progress-circle">2</div>
+                            <span>Medical History</span>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="progress-circle">3</div>
+                            <span>Vital Signs</span>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="progress-circle">4</div>
+                            <span>Review</span>
+                        </div>
+                    </div>
+
+                    <form id="patientRegistrationForm" class="registration-form">
+                        <!-- Step 1: Demographics -->
+                        <div class="form-step active" data-step="1">
+                            <h2>Patient Demographics</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName" class="required">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName" class="required">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dateOfBirth" class="required">Date of Birth</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender" class="required">Gender</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group form-group--full">
+                                    <label for="address">Address</label>
+                                    <textarea id="address" name="address" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phoneNumber" class="required">Phone Number</label>
+                                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+
+                                <div class="form-group form-group--full">
+                                    <label for="emergencyContact" class="required">Emergency Contact</label>
+                                    <input type="text" id="emergencyContact" name="emergencyContact" required placeholder="Name and Phone Number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Medical History -->
+                        <div class="form-step" data-step="2">
+                            <h2>Medical History</h2>
+                            <div class="form-grid">
+                                <div class="form-group form-group--full">
+                                    <label for="allergies">Allergies</label>
+                                    <textarea id="allergies" name="allergies" rows="3" placeholder="List any known allergies"></textarea>
+                                </div>
+
+                                <div class="form-group form-group--full">
+                                    <label for="currentMedications">Current Medications</label>
+                                    <textarea id="currentMedications" name="currentMedications" rows="4" placeholder="List current medications with dosages"></textarea>
+                                </div>
+
+                                <div class="form-group form-group--full">
+                                    <label for="medicalConditions">Medical Conditions</label>
+                                    <textarea id="medicalConditions" name="medicalConditions" rows="4" placeholder="Current and past medical conditions"></textarea>
+                                </div>
+
+                                <div class="form-group form-group--full">
+                                    <label for="familyHistory">Family History</label>
+                                    <textarea id="familyHistory" name="familyHistory" rows="4" placeholder="Family history of diabetes, heart disease, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Vital Signs -->
+                        <div class="form-step" data-step="3">
+                            <h2>Vital Signs & Measurements</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="height" class="required">Height</label>
+                                    <input type="text" id="height" name="height" required placeholder="e.g., 5'8&quot;">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="weight" class="required">Weight</label>
+                                    <input type="text" id="weight" name="weight" required placeholder="e.g., 150 lbs">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bloodPressureSystolic">Blood Pressure (Systolic)</label>
+                                    <input type="number" id="bloodPressureSystolic" name="bloodPressureSystolic" placeholder="120">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bloodPressureDiastolic">Blood Pressure (Diastolic)</label>
+                                    <input type="number" id="bloodPressureDiastolic" name="bloodPressureDiastolic" placeholder="80">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="heartRate">Heart Rate (bpm)</label>
+                                    <input type="number" id="heartRate" name="heartRate" placeholder="72">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="temperature">Temperature (°F)</label>
+                                    <input type="number" id="temperature" name="temperature" step="0.1" placeholder="98.6">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Review -->
+                        <div class="form-step" data-step="4">
+                            <h2>Review Patient Information</h2>
+                            <div id="patientReview" class="patient-review">
+                                <!-- Review content will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" id="prevStep" class="btn btn--outline" style="display: none;">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" id="nextStep" class="btn btn--primary">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" id="submitRegistration" class="btn btn--success" style="display: none;">
+                                <i class="fas fa-save"></i> Register Patient
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prediction/Analysis Section -->
+        <section id="prediction" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Diabetes Risk Analysis</h1>
+                    <p class="section-subtitle">Advanced machine learning prediction with ensemble modeling</p>
+                </div>
+
+                <div class="prediction-layout">
+                    <div class="prediction-form-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Clinical Parameters</h3>
+                                <p>Enter patient data for risk assessment</p>
+                            </div>
+
+                            <form id="predictionForm" class="prediction-form">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="pregnancies">Number of Pregnancies</label>
+                                        <input type="number" id="pregnancies" name="pregnancies" min="0" max="20">
+                                        <small class="form-help">Total number of pregnancies</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="glucose" class="required">Glucose Level (mg/dL)</label>
+                                        <input type="number" id="glucose" name="glucose" min="50" max="300" required>
+                                        <small class="form-help">Normal: 70-100 mg/dL</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bloodPressure" class="required">Blood Pressure (mmHg)</label>
+                                        <input type="number" id="bloodPressure" name="bloodPressure" min="40" max="200" required>
+                                        <small class="form-help">Diastolic pressure</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="skinThickness">Skin Thickness (mm)</label>
+                                        <input type="number" id="skinThickness" name="skinThickness" min="0" max="100">
+                                        <small class="form-help">Triceps skin fold</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="insulin">Insulin Level (μU/mL)</label>
+                                        <input type="number" id="insulin" name="insulin" min="0" max="1000">
+                                        <small class="form-help">2-hour serum insulin</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bmi" class="required">BMI</label>
+                                        <input type="number" id="bmi" name="bmi" min="10" max="70" step="0.1" required>
+                                        <small class="form-help">Normal: 18.5-24.9</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="diabetesPedigreeFunction">Diabetes Pedigree Function</label>
+                                        <input type="number" id="diabetesPedigreeFunction" name="diabetesPedigreeFunction" min="0" max="3" step="0.001">
+                                        <small class="form-help">Genetic likelihood</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="age" class="required">Age (years)</label>
+                                        <input type="number" id="age" name="age" min="18" max="120" required>
+                                        <small class="form-help">Patient age</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn--outline" onclick="loadSampleData()">
+                                        <i class="fas fa-download"></i> Load Sample Data
+                                    </button>
+                                    <button type="submit" class="btn btn--primary" id="predictBtn">
+                                        <span class="btn-text">
+                                            <i class="fas fa-chart-line"></i> Analyze Risk
+                                        </span>
+                                        <span class="btn-loading" style="display: none;">
+                                            <i class="fas fa-spinner fa-spin"></i> Analyzing...
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="prediction-results-container">
+                        <div id="predictionResults" class="prediction-results" style="display: none;">
+                            <!-- Results will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Patient Reports & Analytics</h1>
+                    <p class="section-subtitle">Generate comprehensive healthcare reports with PDF export</p>
+                </div>
+
+                <div class="reports-layout">
+                    <div class="report-generator">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Generate Report</h3>
+                                <p>Create comprehensive patient reports</p>
+                            </div>
+
+                            <div class="report-options">
+                                <div class="report-type-selection">
+                                    <h4>Report Type</h4>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" name="reportType" value="risk-assessment" checked>
+                                            <span class="checkmark"></span>
+                                            Risk Assessment Report
+                                        </label>
+                                        <label class="checkbox-option">
+                                            <input type="checkbox" name="reportType" value="comprehensive" checked>
+                                            <span class="checkmark"></span>
+                                            Comprehensive Medical Report
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="report-actions">
+                                    <button class="btn btn--primary" onclick="generateReport()">
+                                        <i class="fas fa-file-pdf"></i> Generate PDF Report
+                                    </button>
+                                    <button class="btn btn--outline" onclick="previewReport()">
+                                        <i class="fas fa-eye"></i> Preview
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-preview" id="reportPreview">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Report Preview</h3>
+                                <div class="preview-actions">
+                                    <button class="btn btn--sm btn--outline" onclick="downloadReport()">
+                                        <i class="fas fa-download"></i> Download PDF
+                                    </button>
+                                    <button class="btn btn--sm btn--outline" onclick="printReport()">
+                                        <i class="fas fa-print"></i> Print
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="reportContent" class="report-content">
+                                <div class="report-placeholder">
+                                    <i class="fas fa-file-alt report-placeholder-icon"></i>
+                                    <h4>No Report Generated</h4>
+                                    <p>Generate a report to see the preview here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Patient Education Center</h1>
+                    <p class="section-subtitle">Evidence-based educational resources for diabetes prevention</p>
+                </div>
+
+                <div class="education-categories">
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="prevention">
+                            <i class="fas fa-shield-alt"></i> Prevention
+                        </button>
+                        <button class="category-tab" data-category="risk-factors">
+                            <i class="fas fa-exclamation-triangle"></i> Risk Factors
+                        </button>
+                        <button class="category-tab" data-category="lifestyle">
+                            <i class="fas fa-running"></i> Lifestyle
+                        </button>
+                        <button class="category-tab" data-category="monitoring">
+                            <i class="fas fa-chart-line"></i> Monitoring
+                        </button>
+                    </div>
+
+                    <div class="category-content">
+                        <!-- Prevention Content -->
+                        <div class="education-content active" data-category="prevention">
+                            <div class="education-grid">
+                                <div class="education-card">
+                                    <div class="education-icon">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <h3>Early Detection</h3>
+                                    <p>Learn about the importance of regular screenings and early detection of diabetes risk factors.</p>
+                                    <div class="education-stats">
+                                        <span class="stat">50% reduction in complications</span>
+                                    </div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="education-icon">
+                                        <i class="fas fa-weight"></i>
+                                    </div>
+                                    <h3>Weight Management</h3>
+                                    <p>Maintain a healthy weight to significantly reduce your risk of developing type 2 diabetes.</p>
+                                    <div class="education-stats">
+                                        <span class="stat">58% risk reduction with 7% weight loss</span>
+                                    </div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="education-icon">
+                                        <i class="fas fa-running"></i>
+                                    </div>
+                                    <h3>Regular Exercise</h3>
+                                    <p>Physical activity improves insulin sensitivity and helps maintain healthy blood sugar levels.</p>
+                                    <div class="education-stats">
+                                        <span class="stat">150 minutes/week recommended</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other category contents would be here -->
+                        <div class="education-content" data-category="risk-factors">
+                            <div class="education-info">
+                                <h3>Understanding Diabetes Risk Factors</h3>
+                                <p>Learn about the key factors that increase your risk of developing diabetes and how to manage them effectively.</p>
+                            </div>
+                        </div>
+
+                        <div class="education-content" data-category="lifestyle">
+                            <div class="education-info">
+                                <h3>Healthy Lifestyle Choices</h3>
+                                <p>Discover practical lifestyle changes that can help prevent diabetes and improve overall health.</p>
+                            </div>
+                        </div>
+
+                        <div class="education-content" data-category="monitoring">
+                            <div class="education-info">
+                                <h3>Health Monitoring Guidelines</h3>
+                                <p>Learn when and how to monitor your health parameters for early diabetes detection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Population Health Section -->
+        <section id="population" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Population Health Analytics</h1>
+                    <p class="section-subtitle">Comprehensive population-level insights and trends</p>
+                </div>
+
+                <div class="population-dashboard">
+                    <div class="population-metrics">
+                        <div class="metric-card metric-card--population">
+                            <div class="metric-content">
+                                <h3>Total Population</h3>
+                                <div class="metric-value">15,847</div>
+                                <div class="metric-breakdown">
+                                    <span>Active Patients: 12,340</span>
+                                    <span>New This Month: 287</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card metric-card--risk">
+                            <div class="metric-content">
+                                <h3>Risk Distribution</h3>
+                                <div class="risk-breakdown">
+                                    <div class="risk-item">
+                                        <span class="risk-label">High Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-fill" style="width: 13.3%"></div>
+                                        </div>
+                                        <span class="risk-value">2,108</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <span class="risk-label">Moderate Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-fill" style="width: 30%"></div>
+                                        </div>
+                                        <span class="risk-value">4,752</span>
+                                    </div>
+                                    <div class="risk-item">
+                                        <span class="risk-label">Low Risk</span>
+                                        <div class="risk-bar">
+                                            <div class="risk-fill" style="width: 57.3%"></div>
+                                        </div>
+                                        <span class="risk-value">9,087</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="population-charts">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3>Age Distribution</h3>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="ageDistributionChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3>Risk Trends Over Time</h3>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="riskTrendsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-heartbeat"></i>
+                    <div>
+                        <span>MedCare Analytics</span>
+                        <p>Advanced Healthcare AI Platform</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">API</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Healthcare</h4>
+                        <ul>
+                            <li><a href="#">Guidelines</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Compliance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MedCare Analytics. HIPAA Compliant Healthcare Platform.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
