@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare Analytics - Professional Healthcare Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <h2>MedCare Analytics</h2>
+            <p>Loading professional healthcare platform...</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <div class="logo-text">
+                        <span class="logo-title">MedCare Analytics</span>
+                        <span class="logo-subtitle">Professional Healthcare AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-section="patient-registration">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register Patient</span>
+                </button>
+                <button class="nav-item" data-section="prediction">
+                    <i class="fas fa-microscope"></i>
+                    <span>Risk Analysis</span>
+                </button>
+                <button class="nav-item" data-section="reports">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Reports</span>
+                </button>
+                <button class="nav-item" data-section="education">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education</span>
+                </button>
+            </nav>
+
+            <div class="header-right">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search patients..." id="globalSearch">
+                </div>
+                <button class="theme-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>Dr</span>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Dr. Sarah Wilson</span>
+                        <span class="user-role">Chief Medical Officer</span>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="page-section active">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Healthcare Analytics Dashboard</h1>
+                    <p>Comprehensive insights and real-time healthcare metrics</p>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-primary" onclick="showSection('patient-registration')">
+                        <i class="fas fa-plus"></i> Add New Patient
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSection('prediction')">
+                        <i class="fas fa-chart-line"></i> Quick Analysis
+                    </button>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-container">
+                <div class="metric-card primary">
+                    <div class="metric-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="metric-details">
+                        <h3>15,847</h3>
+                        <p>Total Patients</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +12% this month
+                        </span>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="metric-details">
+                        <h3>2,108</h3>
+                        <p>High Risk Patients</p>
+                        <span class="metric-change negative">
+                            <i class="fas fa-arrow-down"></i> -3% this month
+                        </span>
+                    </div>
+                </div>
+
+                <div class="metric-card success">
+                    <div class="metric-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-details">
+                        <h3>86%</h3>
+                        <p>Prediction Accuracy</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +2% this quarter
+                        </span>
+                    </div>
+                </div>
+
+                <div class="metric-card info">
+                    <div class="metric-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="metric-details">
+                        <h3>342</h3>
+                        <p>Screenings Today</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i> +8% from yesterday
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid">
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <h3>Risk Distribution</h3>
+                        <div class="panel-controls">
+                            <select class="control-select">
+                                <option>Last 30 days</option>
+                                <option>Last 90 days</option>
+                                <option>Last year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="riskDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-panel">
+                    <div class="panel-header">
+                        <h3>Patient Demographics</h3>
+                        <div class="legend">
+                            <div class="legend-item">
+                                <span class="legend-dot male"></span>Male
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot female"></span>Female
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-panel">
+                <div class="panel-header">
+                    <h3>Recent Patient Assessments</h3>
+                    <a href="#" class="view-all">View All Assessments</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="patient-avatar">MJ</div>
+                        <div class="patient-info">
+                            <h4>Maria Johnson</h4>
+                            <p>ID: MRN-2024-002341</p>
+                            <span class="assessment-details">High risk prediction • Glucose: 185 mg/dL • BMI: 34.2</span>
+                            <span class="timestamp">2 minutes ago</span>
+                        </div>
+                        <div class="risk-badge high">High Risk</div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="patient-avatar">RD</div>
+                        <div class="patient-info">
+                            <h4>Robert Davis</h4>
+                            <p>ID: MRN-2024-002340</p>
+                            <span class="assessment-details">Low risk prediction • Glucose: 95 mg/dL • BMI: 22.8</span>
+                            <span class="timestamp">15 minutes ago</span>
+                        </div>
+                        <div class="risk-badge low">Low Risk</div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="patient-avatar">LW</div>
+                        <div class="patient-info">
+                            <h4>Lisa Wilson</h4>
+                            <p>ID: MRN-2024-002339</p>
+                            <span class="assessment-details">Moderate risk prediction • Glucose: 145 mg/dL • BMI: 28.5</span>
+                            <span class="timestamp">1 hour ago</span>
+                        </div>
+                        <div class="risk-badge moderate">Moderate Risk</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patient Registration Section -->
+        <section id="patient-registration" class="page-section">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Patient Registration</h1>
+                    <p>Comprehensive patient intake and medical history collection</p>
+                </div>
+            </div>
+
+            <div class="registration-container">
+                <div class="progress-tracker">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span class="step-label">Demographics</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span class="step-label">Medical History</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span class="step-label">Vital Signs</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span class="step-label">Review</span>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <form id="patientRegistrationForm" class="patient-form">
+                        <!-- Step 1: Demographics -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-header">
+                                <h2>Patient Demographics</h2>
+                                <p>Enter basic patient information</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth *</label>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="address">Address</label>
+                                    <textarea id="address" name="address" rows="3" placeholder="Enter full address"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number *</label>
+                                    <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="(123) 456-7890">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="patient@email.com">
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="emergencyContact">Emergency Contact *</label>
+                                    <input type="text" id="emergencyContact" name="emergencyContact" required placeholder="Name and Phone Number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Medical History -->
+                        <div class="form-step" data-step="2">
+                            <div class="step-header">
+                                <h2>Medical History</h2>
+                                <p>Provide detailed medical background</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="allergies">Known Allergies</label>
+                                    <textarea id="allergies" name="allergies" rows="3" placeholder="List any known allergies and reactions"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="currentMedications">Current Medications</label>
+                                    <textarea id="currentMedications" name="currentMedications" rows="4" placeholder="List all current medications with dosages"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="medicalConditions">Medical Conditions</label>
+                                    <textarea id="medicalConditions" name="medicalConditions" rows="4" placeholder="Current and past medical conditions"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="familyHistory">Family Medical History</label>
+                                    <textarea id="familyHistory" name="familyHistory" rows="4" placeholder="Family history of diabetes, heart disease, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Vital Signs -->
+                        <div class="form-step" data-step="3">
+                            <div class="step-header">
+                                <h2>Vital Signs & Measurements</h2>
+                                <p>Record current vital signs and physical measurements</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="height">Height *</label>
+                                    <input type="text" id="height" name="height" required placeholder="5'8&quot; or 173 cm">
+                                    <small class="form-hint">Enter in feet/inches or centimeters</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="weight">Weight *</label>
+                                    <input type="text" id="weight" name="weight" required placeholder="150 lbs or 68 kg">
+                                    <small class="form-hint">Enter in pounds or kilograms</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bloodPressureSystolic">Blood Pressure (Systolic)</label>
+                                    <input type="number" id="bloodPressureSystolic" name="bloodPressureSystolic" placeholder="120">
+                                    <small class="form-hint">Normal: 90-140 mmHg</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bloodPressureDiastolic">Blood Pressure (Diastolic)</label>
+                                    <input type="number" id="bloodPressureDiastolic" name="bloodPressureDiastolic" placeholder="80">
+                                    <small class="form-hint">Normal: 60-90 mmHg</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="heartRate">Heart Rate (bpm)</label>
+                                    <input type="number" id="heartRate" name="heartRate" placeholder="72">
+                                    <small class="form-hint">Normal: 60-100 bpm</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="temperature">Temperature (°F)</label>
+                                    <input type="number" id="temperature" name="temperature" step="0.1" placeholder="98.6">
+                                    <small class="form-hint">Normal: 97.0-99.0°F</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Review -->
+                        <div class="form-step" data-step="4">
+                            <div class="step-header">
+                                <h2>Review Patient Information</h2>
+                                <p>Please review all entered information before submitting</p>
+                            </div>
+
+                            <div id="patientReview" class="review-container">
+                                <!-- Review content will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" id="prevStep" class="btn btn-secondary" style="display: none;">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" id="nextStep" class="btn btn-primary">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" id="submitRegistration" class="btn btn-success" style="display: none;">
+                                <i class="fas fa-save"></i> Register Patient
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prediction/Analysis Section -->
+        <section id="prediction" class="page-section">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Diabetes Risk Analysis</h1>
+                    <p>Advanced machine learning prediction with clinical decision support</p>
+                </div>
+            </div>
+
+            <div class="prediction-layout">
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <h3>Clinical Parameters</h3>
+                        <p>Enter patient data for comprehensive risk assessment</p>
+                    </div>
+
+                    <form id="predictionForm" class="prediction-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="pregnancies">Number of Pregnancies</label>
+                                <input type="number" id="pregnancies" name="pregnancies" min="0" max="20" placeholder="0">
+                                <small class="form-hint">Total number of pregnancies</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="glucose">Glucose Level (mg/dL) *</label>
+                                <input type="number" id="glucose" name="glucose" min="50" max="300" required placeholder="100">
+                                <small class="form-hint">Normal fasting: 70-100 mg/dL</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bloodPressure">Blood Pressure (mmHg) *</label>
+                                <input type="number" id="bloodPressure" name="bloodPressure" min="40" max="200" required placeholder="80">
+                                <small class="form-hint">Diastolic pressure</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skinThickness">Skin Thickness (mm)</label>
+                                <input type="number" id="skinThickness" name="skinThickness" min="0" max="100" placeholder="20">
+                                <small class="form-hint">Triceps skin fold thickness</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="insulin">Insulin Level (μU/mL)</label>
+                                <input type="number" id="insulin" name="insulin" min="0" max="1000" placeholder="85">
+                                <small class="form-hint">2-hour serum insulin</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bmi">BMI *</label>
+                                <input type="number" id="bmi" name="bmi" min="10" max="70" step="0.1" required placeholder="25.0">
+                                <small class="form-hint">Normal: 18.5-24.9</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="diabetesPedigreeFunction">Diabetes Pedigree Function</label>
+                                <input type="number" id="diabetesPedigreeFunction" name="diabetesPedigreeFunction" min="0" max="3" step="0.001" placeholder="0.5">
+                                <small class="form-hint">Genetic likelihood score</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="age">Age (years) *</label>
+                                <input type="number" id="age" name="age" min="18" max="120" required placeholder="35">
+                                <small class="form-hint">Patient age</small>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="loadSampleData()">
+                                <i class="fas fa-download"></i> Load Sample Data
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="predictBtn">
+                                <span class="btn-content">
+                                    <i class="fas fa-chart-line"></i> Analyze Risk
+                                </span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Analyzing...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="results-panel">
+                    <div id="predictionResults" class="prediction-results" style="display: none;">
+                        <!-- Results will be populated dynamically -->
+                    </div>
+                    <div class="results-placeholder">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Diabetes Risk Analysis</h3>
+                        <p>Enter patient clinical parameters and click "Analyze Risk" to see comprehensive ML-powered predictions and recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="page-section">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Patient Reports & Analytics</h1>
+                    <p>Generate comprehensive healthcare reports with professional formatting</p>
+                </div>
+            </div>
+
+            <div class="reports-layout">
+                <div class="report-options-panel">
+                    <div class="panel-header">
+                        <h3>Report Generator</h3>
+                        <p>Create professional clinical reports</p>
+                    </div>
+
+                    <div class="report-types">
+                        <h4>Report Types</h4>
+                        <div class="checkbox-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reportType" value="risk-assessment" checked>
+                                <span class="checkbox-mark"></span>
+                                <div class="checkbox-content">
+                                    <strong>Risk Assessment Report</strong>
+                                    <small>Comprehensive diabetes risk analysis</small>
+                                </div>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reportType" value="comprehensive" checked>
+                                <span class="checkbox-mark"></span>
+                                <div class="checkbox-content">
+                                    <strong>Complete Medical Report</strong>
+                                    <small>Full patient summary with recommendations</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="report-actions">
+                        <button class="btn btn-primary full-width" onclick="generateReport()">
+                            <i class="fas fa-file-pdf"></i> Generate PDF Report
+                        </button>
+                        <button class="btn btn-secondary full-width" onclick="previewReport()">
+                            <i class="fas fa-eye"></i> Preview Report
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-preview-panel">
+                    <div class="panel-header">
+                        <h3>Patient Reports</h3>
+                        <div class="preview-actions">
+                            <button class="btn btn-sm btn-secondary" onclick="downloadReport()">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="printReport()">
+                                <i class="fas fa-print"></i> Print
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="reportContent" class="report-preview">
+                        <div class="preview-placeholder">
+                            <div class="placeholder-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>Registered Patient Reports</h3>
+                            <p>Patient data will appear here after registration. Register patients to see their detailed reports and medical information.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section with Comprehensive Information -->
+        <section id="education" class="page-section">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Patient Education Center</h1>
+                    <p>Evidence-based educational resources for diabetes prevention and management</p>
+                </div>
+            </div>
+
+            <div class="education-container">
+                <div class="education-tabs">
+                    <button class="education-tab active" data-category="prevention">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Prevention</span>
+                    </button>
+                    <button class="education-tab" data-category="risk-factors">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Risk Factors</span>
+                    </button>
+                    <button class="education-tab" data-category="lifestyle">
+                        <i class="fas fa-running"></i>
+                        <span>Lifestyle</span>
+                    </button>
+                    <button class="education-tab" data-category="monitoring">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Monitoring</span>
+                    </button>
+                </div>
+
+                <div class="education-content">
+                    <!-- Prevention Content -->
+                    <div class="education-panel active" data-category="prevention">
+                        <div class="education-grid">
+                            <div class="education-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h3>Early Detection</h3>
+                                <p>Regular screenings are crucial for preventing diabetes complications. Early detection through blood glucose testing, HbA1c measurements, and risk factor assessment can reduce complications by up to 50%.</p>
+                                <div class="card-details">
+                                    <ul>
+                                        <li><strong>Annual screening</strong> for adults over 35</li>
+                                        <li><strong>Every 3 years</strong> for lower risk individuals</li>
+                                        <li><strong>More frequent</strong> if risk factors present</li>
+                                    </ul>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="stat-number">50%</span>
+                                    <span class="stat-label">Reduction in complications with early detection</span>
+                                </div>
+                            </div>
+
+                            <div class="education-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <h3>Weight Management</h3>
+                                <p>Maintaining a healthy weight is one of the most effective ways to prevent type 2 diabetes. Even modest weight loss can dramatically reduce your risk.</p>
+                                <div class="card-details">
+                                    <ul>
+                                        <li><strong>7% weight loss</strong> reduces risk by 58%</li>
+                                        <li><strong>BMI target:</strong> 18.5-24.9 for optimal health</li>
+                                        <li><strong>Waist circumference:</strong> <40" men, <35" women</li>
+                                        <li><strong>Gradual approach:</strong> 1-2 pounds per week</li>
+                                    </ul>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="stat-number">58%</span>
+                                    <span class="stat-label">Risk reduction with 7% weight loss</span>
+                                </div>
+                            </div>
+
+                            <div class="education-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <h3>Regular Exercise</h3>
+                                <p>Physical activity improves insulin sensitivity, helps maintain healthy blood sugar levels, and reduces diabetes risk significantly.</p>
+                                <div class="card-details">
+                                    <ul>
+                                        <li><strong>150 minutes/week</strong> moderate aerobic activity</li>
+                                        <li><strong>2 days/week</strong> resistance training</li>
+                                        <li><strong>Break up sitting time</strong> every 30 minutes</li>
+                                        <li><strong>Start gradually</strong> and build intensity</li>
+                                    </ul>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="stat-number">150</span>
+                                    <span class="stat-label">Minutes per week recommended</span>
+                                </div>
+                            </div>
+
+                            <div class="education-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <h3>Healthy Diet</h3>
+                                <p>A balanced, nutritious diet plays a crucial role in diabetes prevention and blood sugar management.</p>
+                                <div class="card-details">
+                                    <ul>
+                                        <li><strong>Whole grains</strong> instead of refined carbs</li>
+                                        <li><strong>Lean proteins:</strong> fish, poultry, legumes</li>
+                                        <li><strong>Healthy fats:</strong> nuts, olive oil, avocado</li>
+                                        <li><strong>Limit sugar</strong> and processed foods</li>
+                                        <li><strong>Portion control</strong> and meal timing</li>
+                                    </ul>
+                                </div>
+                                <div class="card-stat">
+                                    <span class="stat-number">30%</span>
+                                    <span class="stat-label">Risk reduction with healthy diet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Factors Content -->
+                    <div class="education-panel" data-category="risk-factors">
+                        <div class="risk-factors-section">
+                            <h3>Understanding Diabetes Risk Factors</h3>
+                            <p>Knowledge of risk factors empowers you to take preventive action. Some factors can be modified through lifestyle changes, while others are genetic or age-related.</p>
+
+                            <div class="risk-categories">
+                                <div class="risk-category">
+                                    <h4><i class="fas fa-edit"></i> Modifiable Risk Factors</h4>
+                                    <div class="risk-items">
+                                        <div class="risk-item">
+                                            <div class="risk-icon high"><i class="fas fa-weight-hanging"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Obesity (BMI ≥30)</strong>
+                                                <p>Excess weight, especially around the waist, increases insulin resistance.</p>
+                                                <span class="risk-level high">High Impact</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon high"><i class="fas fa-couch"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Physical Inactivity</strong>
+                                                <p>Sedentary lifestyle reduces glucose uptake by muscles and increases insulin resistance.</p>
+                                                <span class="risk-level high">High Impact</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon medium"><i class="fas fa-smoking"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Smoking</strong>
+                                                <p>Tobacco use increases diabetes risk by 30-40% and worsens complications.</p>
+                                                <span class="risk-level medium">Medium Impact</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon medium"><i class="fas fa-wine-glass"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Excessive Alcohol</strong>
+                                                <p>Heavy drinking can lead to chronic pancreatitis and insulin resistance.</p>
+                                                <span class="risk-level medium">Medium Impact</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon medium"><i class="fas fa-moon"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Poor Sleep</strong>
+                                                <p>Less than 6 hours of sleep affects glucose metabolism and hormone balance.</p>
+                                                <span class="risk-level medium">Medium Impact</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="risk-category">
+                                    <h4><i class="fas fa-dna"></i> Non-Modifiable Risk Factors</h4>
+                                    <div class="risk-items">
+                                        <div class="risk-item">
+                                            <div class="risk-icon fixed"><i class="fas fa-birthday-cake"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Age (45+ years)</strong>
+                                                <p>Risk increases with age due to decreased insulin sensitivity and beta-cell function.</p>
+                                                <span class="risk-level fixed">Age-Related</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon fixed"><i class="fas fa-users"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Family History</strong>
+                                                <p>Having a parent or sibling with diabetes doubles your risk.</p>
+                                                <span class="risk-level fixed">Genetic</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon fixed"><i class="fas fa-globe"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Ethnicity</strong>
+                                                <p>Higher risk in African American, Hispanic, Native American, and Asian populations.</p>
+                                                <span class="risk-level fixed">Genetic</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="risk-item">
+                                            <div class="risk-icon fixed"><i class="fas fa-baby"></i></div>
+                                            <div class="risk-content">
+                                                <strong>Gestational Diabetes History</strong>
+                                                <p>Previous gestational diabetes increases future type 2 diabetes risk by 50%.</p>
+                                                <span class="risk-level fixed">Medical History</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Content -->
+                    <div class="education-panel" data-category="lifestyle">
+                        <div class="lifestyle-section">
+                            <h3>Healthy Lifestyle Choices</h3>
+                            <p>Discover practical lifestyle changes that can prevent diabetes and improve overall health through evidence-based strategies.</p>
+
+                            <div class="lifestyle-areas">
+                                <div class="lifestyle-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-utensils"></i>
+                                        <h4>Nutrition Guidelines</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <div class="guideline-grid">
+                                            <div class="guideline-item">
+                                                <strong>Carbohydrate Management</strong>
+                                                <ul>
+                                                    <li>Choose complex carbs over simple sugars</li>
+                                                    <li>Aim for 45-65% of calories from carbs</li>
+                                                    <li>Use the plate method: 1/4 plate starchy foods</li>
+                                                    <li>Read nutrition labels for hidden sugars</li>
+                                                </ul>
+                                            </div>
+                                            <div class="guideline-item">
+                                                <strong>Protein Intake</strong>
+                                                <ul>
+                                                    <li>Include protein at every meal</li>
+                                                    <li>Choose lean sources: fish, poultry, beans</li>
+                                                    <li>Aim for 0.8-1g per kg body weight</li>
+                                                    <li>Plant proteins help reduce diabetes risk</li>
+                                                </ul>
+                                            </div>
+                                            <div class="guideline-item">
+                                                <strong>Healthy Fats</strong>
+                                                <ul>
+                                                    <li>Focus on omega-3 fatty acids</li>
+                                                    <li>Use olive oil and avocado oil</li>
+                                                    <li>Include nuts and seeds daily</li>
+                                                    <li>Limit saturated and trans fats</li>
+                                                </ul>
+                                            </div>
+                                            <div class="guideline-item">
+                                                <strong>Meal Timing</strong>
+                                                <ul>
+                                                    <li>Eat regular, consistent meals</li>
+                                                    <li>Don't skip breakfast</li>
+                                                    <li>Consider smaller, frequent meals</li>
+                                                    <li>Stop eating 2-3 hours before bed</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lifestyle-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <h4>Exercise Recommendations</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <div class="exercise-types">
+                                            <div class="exercise-type">
+                                                <div class="exercise-icon"><i class="fas fa-walking"></i></div>
+                                                <strong>Aerobic Exercise</strong>
+                                                <p>Improves insulin sensitivity and glucose uptake</p>
+                                                <ul>
+                                                    <li>150 minutes moderate intensity per week</li>
+                                                    <li>Or 75 minutes vigorous intensity</li>
+                                                    <li>Examples: brisk walking, swimming, cycling</li>
+                                                    <li>Start with 10-minute sessions</li>
+                                                </ul>
+                                            </div>
+                                            <div class="exercise-type">
+                                                <div class="exercise-icon"><i class="fas fa-dumbbell"></i></div>
+                                                <strong>Resistance Training</strong>
+                                                <p>Builds muscle mass and improves glucose metabolism</p>
+                                                <ul>
+                                                    <li>2+ days per week, all major muscle groups</li>
+                                                    <li>8-12 repetitions, 2-3 sets each exercise</li>
+                                                    <li>Use weights, resistance bands, or body weight</li>
+                                                    <li>Allow 48 hours recovery between sessions</li>
+                                                </ul>
+                                            </div>
+                                            <div class="exercise-type">
+                                                <div class="exercise-icon"><i class="fas fa-balance-scale"></i></div>
+                                                <strong>Flexibility & Balance</strong>
+                                                <p>Supports overall fitness and prevents injuries</p>
+                                                <ul>
+                                                    <li>Daily stretching and flexibility work</li>
+                                                    <li>Yoga or tai chi 2-3 times per week</li>
+                                                    <li>Balance exercises for older adults</li>
+                                                    <li>Focus on major muscle groups</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lifestyle-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-brain"></i>
+                                        <h4>Stress Management</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <p>Chronic stress can raise blood glucose levels and increase diabetes risk. Effective stress management is crucial for prevention.</p>
+                                        <div class="stress-techniques">
+                                            <div class="technique">
+                                                <i class="fas fa-om"></i>
+                                                <strong>Mindfulness & Meditation</strong>
+                                                <p>10-15 minutes daily can reduce stress hormones and improve glucose control.</p>
+                                            </div>
+                                            <div class="technique">
+                                                <i class="fas fa-bed"></i>
+                                                <strong>Quality Sleep</strong>
+                                                <p>7-9 hours per night. Poor sleep affects glucose metabolism and increases diabetes risk.</p>
+                                            </div>
+                                            <div class="technique">
+                                                <i class="fas fa-users"></i>
+                                                <strong>Social Support</strong>
+                                                <p>Strong relationships and social connections help manage stress and improve health outcomes.</p>
+                                            </div>
+                                            <div class="technique">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <strong>Time Management</strong>
+                                                <p>Organize priorities, set realistic goals, and maintain work-life balance.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Monitoring Content -->
+                    <div class="education-panel" data-category="monitoring">
+                        <div class="monitoring-section">
+                            <h3>Health Monitoring Guidelines</h3>
+                            <p>Learn when and how to monitor your health parameters for early diabetes detection and ongoing health maintenance.</p>
+
+                            <div class="monitoring-areas">
+                                <div class="monitoring-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-tint"></i>
+                                        <h4>Blood Glucose Testing</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <div class="test-types">
+                                            <div class="test-type">
+                                                <strong>Fasting Plasma Glucose (FPG)</strong>
+                                                <div class="test-details">
+                                                    <div class="test-ranges">
+                                                        <div class="range normal">Normal: &lt;100 mg/dL</div>
+                                                        <div class="range prediabetes">Prediabetes: 100-125 mg/dL</div>
+                                                        <div class="range diabetes">Diabetes: ≥126 mg/dL</div>
+                                                    </div>
+                                                    <p><strong>Frequency:</strong> Every 3 years if normal, annually if prediabetic</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="test-type">
+                                                <strong>Hemoglobin A1C (HbA1c)</strong>
+                                                <div class="test-details">
+                                                    <div class="test-ranges">
+                                                        <div class="range normal">Normal: &lt;5.7%</div>
+                                                        <div class="range prediabetes">Prediabetes: 5.7-6.4%</div>
+                                                        <div class="range diabetes">Diabetes: ≥6.5%</div>
+                                                    </div>
+                                                    <p><strong>Frequency:</strong> Every 3 years if normal, every 1-2 years if at risk</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="test-type">
+                                                <strong>Oral Glucose Tolerance Test (OGTT)</strong>
+                                                <div class="test-details">
+                                                    <div class="test-ranges">
+                                                        <div class="range normal">Normal: &lt;140 mg/dL</div>
+                                                        <div class="range prediabetes">Prediabetes: 140-199 mg/dL</div>
+                                                        <div class="range diabetes">Diabetes: ≥200 mg/dL</div>
+                                                    </div>
+                                                    <p><strong>When:</strong> Used when other tests are borderline or for gestational diabetes screening</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="monitoring-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-weight"></i>
+                                        <h4>Physical Measurements</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <div class="measurements">
+                                            <div class="measurement">
+                                                <strong>Body Mass Index (BMI)</strong>
+                                                <div class="measurement-details">
+                                                    <div class="bmi-ranges">
+                                                        <div class="range normal">Normal: 18.5-24.9</div>
+                                                        <div class="range overweight">Overweight: 25.0-29.9</div>
+                                                        <div class="range obese">Obese: ≥30.0</div>
+                                                    </div>
+                                                    <p><strong>Frequency:</strong> Monthly self-monitoring, annually by healthcare provider</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="measurement">
+                                                <strong>Waist Circumference</strong>
+                                                <div class="measurement-details">
+                                                    <div class="waist-ranges">
+                                                        <div class="range">Men: &lt;40 inches (102 cm)</div>
+                                                        <div class="range">Women: &lt;35 inches (88 cm)</div>
+                                                    </div>
+                                                    <p><strong>Significance:</strong> Abdominal obesity is strongly linked to diabetes risk</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="measurement">
+                                                <strong>Blood Pressure</strong>
+                                                <div class="measurement-details">
+                                                    <div class="bp-ranges">
+                                                        <div class="range normal">Normal: &lt;120/80 mmHg</div>
+                                                        <div class="range elevated">Elevated: 120-129/&lt;80</div>
+                                                        <div class="range high">High: ≥130/80 mmHg</div>
+                                                    </div>
+                                                    <p><strong>Frequency:</strong> At least every 2 years if normal, more often if elevated</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="monitoring-area">
+                                    <div class="area-header">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <h4>Screening Schedule</h4>
+                                    </div>
+                                    <div class="area-content">
+                                        <div class="screening-timeline">
+                                            <div class="timeline-item">
+                                                <div class="timeline-age">Age 35+</div>
+                                                <div class="timeline-content">
+                                                    <strong>Initial Screening</strong>
+                                                    <p>Begin regular diabetes screening with FPG or HbA1c for all adults</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item">
+                                                <div class="timeline-age">High Risk</div>
+                                                <div class="timeline-content">
+                                                    <strong>Annual Screening</strong>
+                                                    <p>If BMI ≥25 plus additional risk factors, or previous prediabetes</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item">
+                                                <div class="timeline-age">Low Risk</div>
+                                                <div class="timeline-content">
+                                                    <strong>Every 3 Years</strong>
+                                                    <p>If previous tests normal and no new risk factors developed</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="timeline-item">
+                                                <div class="timeline-age">Pregnancy</div>
+                                                <div class="timeline-content">
+                                                    <strong>Gestational Screening</strong>
+                                                    <p>Screen at 24-28 weeks, earlier if risk factors present</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="monitoring-tips">
+                                            <h5>Self-Monitoring Tips</h5>
+                                            <ul>
+                                                <li>Keep a health journal with key measurements</li>
+                                                <li>Track weight, blood pressure, and physical activity</li>
+                                                <li>Note symptoms like increased thirst, urination, or fatigue</li>
+                                                <li>Schedule regular check-ups with healthcare providers</li>
+                                                <li>Discuss family history and personal risk factors</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-brand">
+                    <i class="fas fa-heartbeat"></i>
+                    <div class="brand-text">
+                        <span class="brand-title">MedCare Analytics</span>
+                        <span class="brand-subtitle">Professional Healthcare AI Platform</span>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Empowering healthcare professionals with advanced AI-driven insights for better patient outcomes and clinical decision support.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Platform</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Patient Management</a></li>
+                    <li><a href="#">Risk Analysis</a></li>
+                    <li><a href="#">Reports</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Healthcare</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Clinical Guidelines</a></li>
+                    <li><a href="#">Medical Research</a></li>
+                    <li><a href="#">HIPAA Compliance</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Training</a></li>
+                    <li><a href="#">Technical Support</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2024 MedCare Analytics. HIPAA Compliant Healthcare Platform. All rights reserved.</p>
+                <div class="footer-compliance">
+                    <span class="compliance-badge">HIPAA Compliant</span>
+                    <span class="compliance-badge">SOC 2 Certified</span>
+                    <span class="compliance-badge">FDA Guidelines</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
